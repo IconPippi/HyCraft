@@ -7,4 +7,7 @@ import lombok.Getter;
 public class MainConfig implements Config {
     @ConfigProperty("port")
     private int port;
+
+    @ConfigProperty("item_notification")
+    private String itemNotification;
 }

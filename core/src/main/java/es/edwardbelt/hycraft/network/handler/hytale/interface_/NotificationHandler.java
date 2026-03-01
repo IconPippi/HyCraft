@@ -2,11 +2,13 @@ package es.edwardbelt.hycraft.network.handler.hytale.interface_;
 
 import com.hypixel.hytale.protocol.packets.interface_.Notification;
 import com.hypixel.hytale.server.core.asset.type.item.config.Item;
+import es.edwardbelt.hycraft.HyCraft;
 import es.edwardbelt.hycraft.network.handler.PacketHandler;
 import es.edwardbelt.hycraft.network.player.ClientConnection;
 import es.edwardbelt.hycraft.protocol.packet.play.SetActionBarPacket;
 import es.edwardbelt.hycraft.util.ItemUtil;
 import es.edwardbelt.hycraft.util.LanguageUtil;
+import es.edwardbelt.hycraft.util.MessageUtil;
 
 public class NotificationHandler implements PacketHandler<Notification> {
     @Override
@@ -30,7 +32,12 @@ public class NotificationHandler implements PacketHandler<Notification> {
 
             connection.setLastNotificationTime(currentTime);
 
-            String message = "§a+" + connection.getLastNotificationQuantity() + " §b" + name;
+            String message = MessageUtil.parse(
+                    HyCraft.get().getConfigManager().getMain().getItemNotification(),
+                    "quantity", String.valueOf(connection.getLastNotificationQuantity()),
+                    "item", name
+            );
+
             SetActionBarPacket actionBarPacket = new SetActionBarPacket(message);
             connection.getChannel().writeAndFlush(actionBarPacket);
         }
