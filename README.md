@@ -12,7 +12,7 @@ It functions by spinning up a parallel TCP server within the Hytale server proce
 
 ## Features
 
-*   **Protocol Translation:** Real-time translation between Minecraft 1.21.11 (Protocol 773) and Hytale.
+*   **Protocol Translation:** Real-time translation between Minecraft 1.21.11 (Protocol 774) and Hytale.
 *   **Authentication:** Full Mojang authentication support (Online Mode) via `sessionserver.mojang.com`.
 *   **World Rendering:**
     *   Dynamic chunk conversion (Hytale chunks $\to$ Minecraft chunks).
