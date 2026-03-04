@@ -1,9 +1,20 @@
 package es.edwardbelt.hycraft.api.gui;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
-public abstract class HyCraftItemStack {
+@Getter
+@Setter
+public class HyCraftItemStack {
+    private int amount;
+    private HyCraftMaterial material;
     private String name;
     private List<String> lore;
-    private int material;
+
+    public HyCraftItemStack(int amount, HyCraftMaterial material) {
+        this.amount = amount;
+        this.material = material;
+    }
 }
