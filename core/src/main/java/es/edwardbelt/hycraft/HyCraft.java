@@ -1,9 +1,12 @@
 package es.edwardbelt.hycraft;
 
-import com.hypixel.hytale.codec.builder.BuilderCodec;
+import com.hypixel.hytale.protocol.Packet;
+import com.hypixel.hytale.protocol.packets.inventory.MoveItemStack;
+import com.hypixel.hytale.server.core.io.PacketHandler;
+import com.hypixel.hytale.server.core.io.adapter.PacketAdapters;
+import com.hypixel.hytale.server.core.modules.interaction.interaction.config.RootInteraction;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
-import com.hypixel.hytale.server.core.util.Config;
 import es.edwardbelt.hycraft.api.HyCraftApi;
 import es.edwardbelt.hycraft.api.connection.HyCraftConnection;
 import es.edwardbelt.hycraft.api.gui.HyCraftGui;
@@ -12,6 +15,8 @@ import es.edwardbelt.hycraft.mapping.MappingRegistry;
 import es.edwardbelt.hycraft.network.MinecraftServerBootstrap;
 import es.edwardbelt.hycraft.network.handler.minecraft.manager.gui.GuiManager;
 import es.edwardbelt.hycraft.network.player.ClientConnection;
+import es.edwardbelt.hycraft.patches.interaction.InteractionPatcher;
+import es.edwardbelt.hycraft.patches.PatchHelper;
 import lombok.Getter;
 
 import javax.annotation.Nonnull;
@@ -31,7 +36,7 @@ public class HyCraft extends JavaPlugin implements HyCraftApi {
     public HyCraft(@Nonnull JavaPluginInit init) {
         super(init);
         INSTANCE = this;
-
+        PatchHelper.init();
         this.minecraftServerBootstrap = new MinecraftServerBootstrap();
         this.configManager = new ConfigManager();
     }
@@ -40,6 +45,7 @@ public class HyCraft extends JavaPlugin implements HyCraftApi {
     protected void setup() {
         HyCraftApi.setInstance(this);
         configManager.reload();
+        InteractionPatcher.install();
     }
 
     @Override
