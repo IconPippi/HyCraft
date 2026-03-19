@@ -8,6 +8,7 @@ import com.hypixel.hytale.server.core.auth.ProfileServiceClient;
 import es.edwardbelt.hycraft.mixins.MixinConstants;
 import org.spongepowered.asm.mixin.*;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
@@ -31,9 +32,11 @@ public abstract class ProfileServiceClientMixin {
     @Final
     private static HytaleLogger LOGGER;
 
+    @Final
     @Shadow
     private HttpClient httpClient;
 
+    @Final
     @Shadow
     private String profileServiceUrl;
 
@@ -67,6 +70,7 @@ public abstract class ProfileServiceClientMixin {
      * @reason Resolve Minecraft player UUIDs.
      * Using Overwrite rather than Inject because CallbackInfo isn't resolvable at runtime because TransformingClassLoader can't see the app classloader where mixin classes live, so @Inject with cancel/setReturnValue is unusable
      */
+    @Nullable
     @Overwrite
     public ProfileServiceClient.PublicGameProfile getProfileByUsername(String username, String bearerToken) {
         ProfileServiceClient.PublicGameProfile hooked = hycraft$lookupProfile(username);
