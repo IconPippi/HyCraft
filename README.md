@@ -92,13 +92,8 @@ This project requires **Java 25** to build.
     git clone https://github.com/EdwardBelt/HyCraft.git
     cd HyCraft
     ```
-
-2.  **Provide Dependencies:**
-    You must provide a valid `HytaleServer.jar` for compilation.
-    *   Create a `lib/` directory in the project root.
-    *   Copy your `HytaleServer.jar` into `lib/`.
-
-3.  **Build with Gradle:**
+    
+2.  **Build with Gradle:**
     ```bash
     # Linux/macOS
     ./gradlew shadowJar
@@ -107,7 +102,7 @@ This project requires **Java 25** to build.
     gradlew.bat shadowJar
     ```
 
-4.  The compiled artifact will be located in `core/build/libs/`.
+3.  The compiled artifact will be located in `core/build/libs/`.
 
 ## Contributing
 
